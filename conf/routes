@@ -1,0 +1,13 @@
+# Index
+GET        /                              controllers.MainController.index
+GET        /status/:app                   controllers.MainController.status(app: String)
+GET        /logout                        controllers.MainController.logout
+
+# OAuth
+GET        /_heroku_oauth_callback        controllers.MainController.herokuOAuthCallback(code: String)
+
+# Map static resources from the /public folder to the /assets URL path
+GET        /assets/*file                  controllers.Assets.versioned(path="/public", file: Asset)
+
+# WebJars
+GET        /webjars/org.webjars/*file     controllers.WebJarAssets.at(file)

@@ -1,0 +1,27 @@
+@()(implicit webJarUtil: utils.WebJarUtil)
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Heroku Connect Status</title>
+        <link rel='stylesheet' href='@webJarUtil.url("bootstrap.min.css")'>
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+        <style>
+            body {
+                margin-top: 60px;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Heroku Connect Status</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <a href="@routes.MainController.index" class="btn btn-default">Login</a>
+        </div>
+    </body>
+</html>

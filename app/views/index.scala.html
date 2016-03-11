@@ -1,0 +1,12 @@
+@(apps: Seq[String])(implicit webJarUtil: utils.WebJarUtil)
+
+@main {
+
+    Your Heroku Apps:
+    <ul class="list-inline">
+    @for(app <- apps) {
+        <li class="list-group-item"><a href="@routes.MainController.status(app)">@app</a></li>
+    }
+    </ul>
+
+}

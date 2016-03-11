@@ -1,0 +1,25 @@
+@import play.api.libs.json.JsValue
+@(statuses: Seq[JsValue])(implicit webJarUtil: utils.WebJarUtil)
+
+@main {
+
+    @if(statuses.isEmpty) {
+        The Heroku Connect addon is present but has not been configured
+    } else {
+        @for(status <- statuses) {
+            Heroku Connect Status: Heroku (@{status.\("app_name").as[String]}) &lt;==&gt; Salesforce (@{status.\("organization_id").as[String]})<br/>
+            State: @{status.\("state").as[String]}<br/>
+            Mappings:<br/>
+            @for(mapping <- status.\("mappings").as[Seq[JsValue]]) {
+                SObject: @{mapping.\("object_name").as[String]}<br/>
+                State: @{mapping.\("state").as[String]}<br/>
+                Actively Writing: @{mapping.\("actively_writing").as[Boolean]}<br/>
+                # Salesforce Records: @{mapping.\("counts").\("sf").as[Int]}<br/>
+                # Pending Records: @{mapping.\("counts").\("pending").as[Int]}<br/>
+                # Postgres Records: @{mapping.\("counts").\("db").as[Int]}<br/>
+                # Errors: @{mapping.\("counts").\("errors").as[Int]}<br/>
+            }
+        }
+    }
+
+}
